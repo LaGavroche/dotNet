@@ -1,0 +1,10 @@
+@model IEnumerable<Teacher>
+
+  <h1>bonjour depuis /teacher/Index</h1>
+  <p>Voici les informations de teacher:</p>
+  <ul>
+        @foreach (var teacher in Model)
+        {
+            <li>@teacher.Firstname @teacher.Id</li>
+        }
+  </ul>
