@@ -1,0 +1,27 @@
+  <h2>Liste des Étudiants</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Âge</th>
+        <th>Spécialité</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var etudiant in Model) {
+      <tr>
+        <td>@etudiant.Id</td>
+        <td>@etudiant.Nom</td>
+        <td>@etudiant.Age</td>
+        <td>@etudiant.Specialite</td>
+        <td>
+          <a asp-action="ShowDetails" asp-route-id="@etudiant.Id">Détails</a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table></Etudiant
+>
