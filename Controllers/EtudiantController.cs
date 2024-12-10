@@ -50,7 +50,19 @@ public class EtudiantController : Controller
         return RedirectToAction("Index");
     }
 
-    // Supprimer un Teacher
+    [HttpPost, ActionName("Delete")]
+public IActionResult DeleteConfirmed(int id)
+{
+    var etudiant = _context.Students.Find(id);
+    if (etudiant == null)
+    {
+        return NotFound();
+    }
+
+    _context.Students.Remove(etudiant);
+    _context.SaveChanges();
+    return RedirectToAction("Index");
+}
 
     // Afficher le détail d'un teacher
     // Accessible via /Teacher/ShowDetails/10

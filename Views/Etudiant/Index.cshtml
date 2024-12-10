@@ -1,27 +1,36 @@
 @model IEnumerable<Etudiant>
-  <h2>Liste des Étudiants</h2>
+<h2>Liste des Étudiants</h2>
 
-  <table class="table">
+
+
+<table class="table">
     <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Âge</th>
-        <th>Spécialité</th>
-        <th>Actions</th>
-      </tr>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Âge</th>
+            <th>Détails</th>
+            <th>Actions</th>
+        </tr>
     </thead>
     <tbody>
-      @foreach (var etudiant in Model) {
-      <tr>
-        <td>@etudiant.Id</td>
-        <td>@etudiant.Nom</td>
-        <td>@etudiant.Age</td>
-        <td>
-          <a asp-action="ShowDetails" asp-route-id="@etudiant.Id">Détails</a>
-        </td>
-      </tr>
-      }
+        @foreach (var etudiant in Model)
+        {
+            <tr>
+                <td>@etudiant.Id</td>
+                <td>@etudiant.Nom</td>
+                <td>@etudiant.Age</td>
+                <td>
+                    <a asp-action="ShowDetails" asp-route-id="@etudiant.Id">Détails</a>
+                </td>
+                <td>
+                    <a asp-action="Add" class="btn btn-primary mb-3">Ajouter</a>
+                    <form asp-action="Delete" asp-route-id="@etudiant.Id" method="post">
+                        <input type="hidden" name="id" value="@etudiant.Id" />
+                        <input type="submit" value="Supprimer" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
-  </table></Etudiant
->
+</table>
