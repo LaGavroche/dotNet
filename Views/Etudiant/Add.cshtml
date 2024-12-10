@@ -5,17 +5,17 @@
 @* ceci est un commentaire *@
 
     <div class="="form-group">
-        <label asp-for="Id"></label> <input asp-for="Id">
+    <label asp-for="Id"></label> <input asp-for="Id">
+    <span asp-asp-validation-for="Id" class="text-danger"></span>
     </div>
     
     <div class="="form-group">
-        <label asp-for="Nom"></label> <input asp-for="Nom">
+    <label asp-for="Nom"></label> <input asp-for="Nom">
+    <span asp-asp-validation-for="Nom" class="Nom"></span>
     </div>
     
     <div class="="form-group">
-        <label asp-for="Age"></label> <input asp-for="Age">
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Confirmer</button>
+    <label asp-for="Age"></label> <input asp-for="Age">
+    <span asp-asp-validation-for="Age" class="Age"></span>
     </div>
 </form>

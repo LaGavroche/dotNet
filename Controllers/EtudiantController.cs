@@ -33,6 +33,11 @@ public IActionResult Add()
 [HttpPost]
 public IActionResult Add(Etudiant etudiant)
 {
+    if (!ModelState.IsValid)
+    {
+        return View();
+    }
+    _etudiants.Add(etudiant);
     return RedirectToAction("Index");
 }
 }
