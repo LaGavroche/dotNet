@@ -34,25 +34,5 @@ public IActionResult Add(Etudiant etudiant)
     }
     return View(etudiant);
 }
-public IActionResult Delete(int id)
-{
-    var etudiant = _etudiants.FirstOrDefault(e => e.Id == id);
-    if (etudiant == null)
-    {
-        return NotFound();
-    }
-    return View(etudiant);
-}
-
-[HttpPost, ActionName("Delete")]
-public IActionResult DeleteConfirmed(int id)
-{
-    var etudiant = _etudiants.FirstOrDefault(e => e.Id == id);
-    if (etudiant != null)
-    {
-        _etudiants.Remove(etudiant);
-    }
-    return RedirectToAction(nameof(Index));
-}
 }
    
