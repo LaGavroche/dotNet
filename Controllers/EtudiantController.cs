@@ -23,16 +23,17 @@ public IActionResult ShowDetails(int id)
     }
     return View(etudiant);
     }
+
+[HttpGet]
+public IActionResult Add()
+{
+    return View();
+}
+
 [HttpPost]
 public IActionResult Add(Etudiant etudiant)
 {
-    if (ModelState.IsValid)
-    {
-        etudiant.Id = _etudiants.Max(e => e.Id) + 1;
-        _etudiants.Add(etudiant);
-        return RedirectToAction(nameof(Index));
-    }
-    return View(etudiant);
+    return RedirectToAction("Index");
 }
 }
    
