@@ -1,7 +1,6 @@
+namespace mvc.Models;
 using System.ComponentModel.DataAnnotations;
-
 public class Etudiant
-
 {
     public int Id { get; set; }
 
