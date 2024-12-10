@@ -1,53 +1,62 @@
 using Microsoft.AspNetCore.Mvc;
-using mvc.Models;
 using mvc.Data;
-namespace mvc.Controllers;
+using mvc.Models;
 
-
-
-public class EtudiantController : Controller {
+public class EtudiantController : Controller
+{
+    // champ prive pour stocker le dbcontext
     private readonly ApplicationDbContext _context;
-     private static List<Etudiant> _etudiants = new List<Etudiant>
-    {
-        new Etudiant { Id = 1, Nom = "Alice", Age = 20},
-        new Etudiant { Id = 2, Nom = "Bob", Age = 22},
-        new Etudiant { Id = 3, Nom = "Charlie", Age = 21}
-    };
-       // Constructeur
+
+    // liste d'enseignants
+
+
+    // Constructeur
     public EtudiantController(ApplicationDbContext context)
     {
         _context = context;
     }
 
+
     public IActionResult Index()
     {
-        return View(_etudiants);
-    }
-public IActionResult ShowDetails(int id)
-    {
-    var etudiant = _etudiants.FirstOrDefault(e => e.Id == id);
-    if (etudiant == null)
-    {
-        return NotFound();
-    }
-    return View(etudiant);
+        return View(_context.Students.ToList());
     }
 
-[HttpGet]
-public IActionResult Add()
-{
-    return View();
-}
+    // Ecrire une liste d'Actions
 
-[HttpPost]
-public IActionResult Add(Etudiant etudiant)
-{
-    if (!ModelState.IsValid)
+
+    // Ajouter un Teacher
+    // Accessible via /Teacher/Add en GET affichera le formulaire
+    [HttpGet]
+    public IActionResult Add()
     {
         return View();
     }
-    _etudiants.Add(etudiant);
-    return RedirectToAction("Index");
+
+    // Accessible via /Teacher/Add en POST ajoutera le teacher
+    [HttpPost]
+    public IActionResult Add(Etudiant etudiant)
+    {
+        // Declencher le mecanisme de validation
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+        // Ajouter le teacher
+        _context.Students.Add(etudiant);
+
+        // Sauvegarder les changements
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    // Supprimer un Teacher
+
+    // Afficher le détail d'un teacher
+    // Accessible via /Teacher/ShowDetails/10
+    public IActionResult ShowDetails(int id)
+    {
+        var etudiant = _context.Students.Find(id);
+        return View(etudiant);
+    }
 }
-}
-   
