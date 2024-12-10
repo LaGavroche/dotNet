@@ -11,7 +11,5 @@ public class Etudiant
     [Range(18, 99, ErrorMessage = "L'âge doit être compris entre 18 et 99")]
     public int Age { get; set; }
 
-    [Required(ErrorMessage = "La spécialité est obligatoire")]
-    [Display(Name = "Domaine d'étude")]
-    public string Specialite { get; set; }
+
 }
