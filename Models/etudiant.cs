@@ -16,10 +16,10 @@ public class Etudiant : IdentityUser
     [StringLength(50, MinimumLength = 2, ErrorMessage = "Le prenom doit comporter entre 2 et 50 caractères")]
     public string Prenom {get; set;}
     
-    [Required]
-    [DataType(DataType.EmailAddress)]
-    [EmailAddress]
-    public string Email {get; set;}
+    // [Required]
+    // [DataType(DataType.EmailAddress)]
+    // [EmailAddress]
+    // public string Email {get; set;}
 
 
     [Required(ErrorMessage = "La date de naissance est obligatoire")]
