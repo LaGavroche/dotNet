@@ -1,31 +1,24 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using mvc.Data;
 using mvc.Models;
 
 public class EtudiantController : Controller
 {
-    // champ prive pour stocker le dbcontext
-    private readonly ApplicationDbContext _context;
+    private readonly UserManager<Etudiant> _userManager;
 
-    // liste d'enseignants
-    private static List<Etudiant> _etudiant = new List<Etudiant>
+    public EtudiantController(UserManager<Etudiant> userManager)
     {
-        new Etudiant { Id = 1, Nom = "Doe", Prenom = "John" },
-        new Etudiant { Id = 2, Nom = "Smith", Prenom = "Jane" }
-    };
-
-    // Constructeur
-    public EtudiantController(ApplicationDbContext context)
-    {
-        _context = context;
+        _userManager = userManager;
     }
 
-
-    public IActionResult Index()
+    
+    public async Task<IActionResult> Index()
     {
-        return View(_etudiant);
+        // Récupérer la liste de tous les étudiants
+        var etudiants = await _userManager.GetUsersInRoleAsync("Etudiant");
+        return View(etudiants);
     }
-
 
     [HttpGet]
     public IActionResult Add()
@@ -33,34 +26,36 @@ public class EtudiantController : Controller
         return View();
     }
 
-    // Accessible via /Teacher/Add en POST ajoutera le teacher
     [HttpPost]
-    public IActionResult Add(Etudiant etudiant)
+    public async Task<IActionResult> Add(Etudiant etudiant, string password)
     {
-        // Declencher le mecanisme de validation
         if (!ModelState.IsValid)
         {
-            return View();
+            return View(etudiant);
         }
-        // Ajouter le teacher
-        // _context.Teachers.Add(teacher);
 
-        // Sauvegarder les changements
-        _context.SaveChanges();
-        return RedirectToAction("Index");
+        var result = await _userManager.CreateAsync(etudiant, password);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Index");
+        }
+
+        foreach (var error in result.Errors)
+        {
+            ModelState.AddModelError(string.Empty, error.Description);
+        }
+
+        return View(etudiant);
     }
 
-    // Supprimer un Teacher
-
-    // Afficher le détail d'un teacher
-    // Accessible via /Teacher/ShowDetails/10
-    public IActionResult ShowDetails(int id)
+    public async Task<IActionResult> ShowDetails(string id)
     {
-        //var teacher = _context.Teachers.Find(id);
-        // return View(teacher);
-        return View();
+        var etudiant = await _userManager.FindByIdAsync(id);
+        if (etudiant == null)
+        {
+            return NotFound();
+        }
+
+        return View(etudiant);
     }
-
-
-
 }

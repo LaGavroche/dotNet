@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using mvc.Models;
-using System.Threading.Tasks;
+
 
 public class AccountController : Controller
 {
@@ -71,7 +71,7 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction();
         }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
