@@ -1,0 +1,25 @@
+@model mvc.Models.AccountViewModel
+
+<form asp-action="Register" method="post">
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+    </div>
+    <div>
+        <label asp-for="Firstname"></label>
+        <input asp-for="Firstname" />
+    </div>
+    <div>
+        <label asp-for="Lastname"></label>
+        <input asp-for="Lastname" />
+    </div>
+    <div>
+        <label asp-for="DateNaissance"></label>
+        <input asp-for="DateNaissance" type="date" />
+    </div>
+    <button type="submit">Register</button>
+</form>

@@ -1,36 +1,17 @@
 @model IEnumerable<Etudiant>
-<h2>Liste des Étudiants</h2>
 
-
-
-<table class="table">
-    <thead>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+    </tr>
+    @foreach (var etudiant in Model)
+    {
         <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Âge</th>
-            <th>Détails</th>
-            <th>Actions</th>
+            <td>@etudiant.Id</td>
+            <td>@etudiant.Nom</td>
+            <td>@etudiant.Prenom</td>
         </tr>
-    </thead>
-    <tbody>
-        @foreach (var etudiant in Model)
-        {
-            <tr>
-                <td>@etudiant.Id</td>
-                <td>@etudiant.Nom</td>
-                <td>@etudiant.Age</td>
-                <td>
-                    <a asp-action="ShowDetails" asp-route-id="@etudiant.Id">Détails</a>
-                </td>
-                <td>
-                    <a asp-action="Add" class="btn btn-primary mb-3">Ajouter</a>
-                    <form asp-action="Delete" asp-route-id="@etudiant.Id" method="post">
-                        <input type="hidden" name="id" value="@etudiant.Id" />
-                        <input type="submit" value="Supprimer" class="btn btn-danger" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
+    }
 </table>

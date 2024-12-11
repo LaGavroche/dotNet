@@ -8,7 +8,11 @@ public class EtudiantController : Controller
     private readonly ApplicationDbContext _context;
 
     // liste d'enseignants
-
+    private static List<Etudiant> _etudiant = new List<Etudiant>
+    {
+        new Etudiant { Id = 1, Nom = "Doe", Prenom = "John" },
+        new Etudiant { Id = 2, Nom = "Smith", Prenom = "Jane" }
+    };
 
     // Constructeur
     public EtudiantController(ApplicationDbContext context)
@@ -19,14 +23,10 @@ public class EtudiantController : Controller
 
     public IActionResult Index()
     {
-        return View(_context.Students.ToList());
+        return View(_etudiant);
     }
 
-    // Ecrire une liste d'Actions
 
-
-    // Ajouter un Teacher
-    // Accessible via /Teacher/Add en GET affichera le formulaire
     [HttpGet]
     public IActionResult Add()
     {
@@ -43,32 +43,24 @@ public class EtudiantController : Controller
             return View();
         }
         // Ajouter le teacher
-        _context.Students.Add(etudiant);
+        // _context.Teachers.Add(teacher);
 
         // Sauvegarder les changements
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
-    [HttpPost, ActionName("Delete")]
-public IActionResult DeleteConfirmed(int id)
-{
-    var etudiant = _context.Students.Find(id);
-    if (etudiant == null)
-    {
-        return NotFound();
-    }
-
-    _context.Students.Remove(etudiant);
-    _context.SaveChanges();
-    return RedirectToAction("Index");
-}
+    // Supprimer un Teacher
 
     // Afficher le détail d'un teacher
     // Accessible via /Teacher/ShowDetails/10
     public IActionResult ShowDetails(int id)
     {
-        var etudiant = _context.Students.Find(id);
-        return View(etudiant);
+        //var teacher = _context.Teachers.Find(id);
+        // return View(teacher);
+        return View();
     }
+
+
+
 }

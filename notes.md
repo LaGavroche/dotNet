@@ -1,13 +1,13 @@
 le fichier csproj c'est le contenant de notre projet. 
 La solution elle est le contenant de nos projets
-Le point d'entrée de notre programme en C# c'est un fichier qui se nomme programme.cs
+Le point d'entrï¿½e de notre programme en C# c'est un fichier qui se nomme programme.cs
 
 # le pattern Model View Controller
 
 user -> view
 view -> send inputes to Controller -> update Model -> Notify Controller
 Model -> updates View
-nécessite une DB pour fonctionner en temps réel
+nï¿½cessite une DB pour fonctionner en temps rï¿½el
 
 # Le but du pattern MVC et de structurer le code
 
@@ -33,21 +33,21 @@ MyMvcApp/
 # normes en C#
 
 en C# une classe = un fichier
-on utiliser également un espace de noms (contenants virtuels)
+on utiliser ï¿½galement un espace de noms (contenants virtuels)
 permet de faciliter l'import et l'export de code source, on y stocke les  classes
 
-# en .net on appelle les méthodes de controller des "actions"
+# en .net on appelle les mï¿½thodes de controller des "actions"
 
-nb : tout ce qui est nommé avec un underscore n'est pas destiné à être visible.
-ne pas hésiter à couper l'app lorsqu'on fait des modifs de code (en killant le process)
-le dossier model contiendra toute les classes qui vont structurer les données qu'on a à l'écran.
+nb : tout ce qui est nommï¿½ avec un underscore n'est pas destinï¿½ ï¿½ ï¿½tre visible.
+ne pas hï¿½siter ï¿½ couper l'app lorsqu'on fait des modifs de code (en killant le process)
+le dossier model contiendra toute les classes qui vont structurer les donnï¿½es qu'on a ï¿½ l'ï¿½cran.
 
-pour résumer : 
+pour rï¿½sumer : 
 
 # Controllers
 contiernt les controleurs de l'app 
-par défaut inclus homecontroller.cs
-gère la lotique de traitement des requetes http
+par dï¿½faut inclus homecontroller.cs
+gï¿½re la lotique de traitement des requetes http
 # Models
 contient les fhichiers de vue razor
 ...
@@ -55,3 +55,11 @@ contient les fhichiers de vue razor
 ...
 
 
+un orm permet de manipuler la base par le code
+il manipule "les buisness object"
+ 
+Pour le moment l'application ne permet pas de s'authentifier et de gÃ©rer les autorisations
+"asp.net.Identity" // met Ã  disposition une classe qui beneficie de toute les proprietÃ©s nÃ©cessaires Ã  la MEP de l'authentification +managers servant Ã  gÃ©rer cette classe (toujours un mÃ©canisme d'injection de dÃ©pendence)
+
+Qu'est ce qu'un view Model
+permet de structurer les donnÃ©es d'un formulaire
